@@ -1,8 +1,8 @@
 import { useState, useEffect} from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-import { LoginView } from "../login-view/login-view";
-import { SignupView } from "../signup-view/signup-view";
+// import { LoginView } from "../login-view/login-view";
+// import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
 
@@ -21,7 +21,7 @@ const [selectedMovie, setSelectedMovie] = useState(null);
     }
     
     fetch("https://movie-api-1000.herokuapp.com/movies",{
-      headers: { Authorization: `Bearer ${token}`}
+      // headers: { Authorization: `Bearer ${token}`}
           })
         .then((response) => response.json())
         .then((data) => {
@@ -38,21 +38,21 @@ const [selectedMovie, setSelectedMovie] = useState(null);
           setMovies(moviesFromApi);
 
         });
-        }, [token]);
+        }, []); // add token
 
-        if (!user) {
-          return (
-            <>
-          <LoginView 
-          onLoggedIn={(user,token) => {
-            setUser(user)
-            setToken(token)
-          }} />
-          or 
-          <SignupView />
-          </>
-          ); 
-    }
+        // if (!user) {
+        //   return (
+        //     <>
+        //   <LoginView 
+        //   onLoggedIn={(user,token) => {
+        //     setUser(user)
+        //     setToken(token)
+        //   }} />
+        //   or 
+        //   <SignupView />
+        //   </>
+        //   ); 
+    // }
 
               if (selectedMovie) {
             return ( <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
@@ -75,7 +75,7 @@ const [selectedMovie, setSelectedMovie] = useState(null);
                     }}
                   />
                 ))}
-                  <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
-              </div>
+                  {/* // <button onClick={() => { setUser(null); setToken(null); }}>Logout</button> */}
+               </div>
           );
 }
