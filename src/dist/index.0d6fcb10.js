@@ -27165,9 +27165,6 @@ const MainView = ()=>{
     (0, _react.useEffect)(()=>{
         if (!token) return;
         fetch("https://movie-api-1000.herokuapp.com/movies", {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
         }).then((response)=>response.json()).then((data)=>{
             const moviesFromApi = data.docs.map((doc)=>{
                 return {
@@ -27181,9 +27178,7 @@ const MainView = ()=>{
             });
             setMovies(moviesFromApi);
         });
-    }, [
-        token
-    ]);
+    }, []); // add token
     // if (!user) {
     //   return (
     //     <>
@@ -27213,30 +27208,17 @@ const MainView = ()=>{
         columnNumber: 22
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                    movie: movie,
-                    onMovieClick: (newSelectedMovie)=>{
-                        setSelectedMovie(newSelectedMovie);
-                    }
-                }, movie.id, false, {
-                    fileName: "src/components/MainView/main-view.jsx",
-                    lineNumber: 70,
-                    columnNumber: 22
-                }, undefined)),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                onClick: ()=>{
-                    setUser(null);
-                    setToken(null);
-                },
-                children: "Logout"
-            }, void 0, false, {
+        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                movie: movie,
+                onMovieClick: (newSelectedMovie)=>{
+                    setSelectedMovie(newSelectedMovie);
+                }
+            }, movie.id, false, {
                 fileName: "src/components/MainView/main-view.jsx",
-                lineNumber: 78,
-                columnNumber: 19
-            }, undefined)
-        ]
-    }, void 0, true, {
+                lineNumber: 70,
+                columnNumber: 22
+            }, undefined))
+    }, void 0, false, {
         fileName: "src/components/MainView/main-view.jsx",
         lineNumber: 67,
         columnNumber: 15
