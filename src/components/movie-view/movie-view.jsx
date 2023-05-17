@@ -3,26 +3,56 @@ export const MovieView = ({movie,onBackClick}) => {
   return (
     <div>
         <div>
-          <img src= {movie.ImagePath} />
+          <span>genre: </span>
+          <span>{movie.Genre.Name}</span>
         </div>
         <div>
-          <span>Title: </span>
+          <span>genreDescription: </span>
+          <span>{movie.Genre.Description}</span>
+        </div>
+        <div>
+          <span>director: </span>
+          <span>{movie.Director.Name}</span>
+        </div>
+        <div>
+          <span>directorBio: </span>
+          <span>{movie.Director.Bio}</span>
+        </div>
+        <div>
+          <span>directorBirth: </span>
+          <span>{movie.Director.Birth}</span>
+        </div>
+        <div>
+          <span>directorDeath: </span>
+          <span>{movie.Director.Death}</span>
+        </div>
+        <div>
+          <span>actors: </span>
+          <span>{movie.Actors}</span>
+        </div>
+        <div>
+          <span>id: </span>
+          <span>{movie._id}</span>
+        </div>
+        <div>
+          <span>title: </span>
           <span>{movie.Title}</span>
         </div>
         <div>
-          <span>Description: </span>
+          <span>description: </span>
           <span>{movie.Description}</span>
         </div>
         <div>
-          <span>Genre: </span>
-          <span>{movie.Genre_Name}</span>
+          <span>featured: </span>
+          <span>{movie.Featured}</span>
         </div>
-        <div>
-          <span>Director: </span>
-          <span>{movie.Director_Name}</span>
-        </div>
+
         <button onClick={onBackClick}>Back</button>
+        <div>
+      <img src= {movie.ImagePath} />
+    </div>
      </div>
+      
     );
   };
 

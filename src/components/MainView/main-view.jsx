@@ -16,28 +16,32 @@ const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
     
-    if (!token) {
-      return;
-    }
+    // if (!token) {
+    //   return;
+    // }
     
-    fetch("https://movie-api-1000.herokuapp.com/movies",{
-      // headers: { Authorization: `Bearer ${token}`}
-          })
-        .then((response) => response.json())
-        .then((data) => {
-          const moviesFromApi = data.docs.map((doc) => {
-            return{
-              id: doc._id,
-              description: doc.Description,
-              title: doc.Title,
-              image: doc.ImagePath,
-              director: doc.Director_Name?.[0],
-              genre: doc.Genre_Name
-            };
-          });
-          setMovies(moviesFromApi);
-
+    fetch("https://movie-api-1000.herokuapp.com/movies")
+      .then((response) => response.json())
+      .then((data) => {
+        const moviesFromApi = data.map((doc) => {
+          return {
+            genre: doc.Genre.Name,
+            genreDescription: doc.Genre.Description,
+            director: doc.Director.Name,
+            directorBio: doc.Director.Bio,
+            directorBirth: doc.Director.Birth,
+            directorDeath: doc.Director.Death,
+            actors: doc.Actors,
+            id: doc._id,
+            title: doc.Title,
+            image: doc.ImagePath,
+            description: doc.Description,
+            featured: doc.Featured,
+          };
         });
+        setMovies(moviesFromApi);
+      });
+
         }, []); // add token
 
         // if (!user) {
