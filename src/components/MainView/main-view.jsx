@@ -1,85 +1,81 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 // import { LoginView } from "../login-view/login-view";
 // import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
-
-const storedUser = JSON.parse(localStorage.getItem("user"));
-const storedToken = localStorage.getItem("token");
-const [user, setUser] = useState(storedUser? storedUser : null);
-const [token, setToken] = useState(storedToken? storedToken : null);
-const [movies, setMovies] = useState([]);
-const [selectedMovie, setSelectedMovie] = useState(null);
-
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
+  const [user, setUser] = useState(storedUser ? storedUser : null);
+  const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    
     // if (!token) {
     //   return;
     // }
-    
-    fetch("https://movie-api-1000.herokuapp.com/movies")
+
+    fetch("https://movie-api-1000.herokuapp.com/movies", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
       .then((response) => response.json())
       .then((data) => {
         const moviesFromApi = data.map((doc) => {
+          console.log(doc);
           return {
-            genre: doc.Genre.Name,
-            genreDescription: doc.Genre.Description,
-            director: doc.Director.Name,
-            directorBio: doc.Director.Bio,
-            directorBirth: doc.Director.Birth,
-            directorDeath: doc.Director.Death,
-            actors: doc.Actors,
             id: doc._id,
+            description: doc.Description,
             title: doc.Title,
             image: doc.ImagePath,
-            description: doc.Description,
-            featured: doc.Featured,
+            director: doc.Director.Name,
+            genre: doc.Genre.Name,
           };
         });
         setMovies(moviesFromApi);
       });
+  }, []); // add token
 
-        }, []); // add token
+  // if (!user) {
+  //   return (
+  //     <>
+  //   <LoginView
+  //   onLoggedIn={(user,token) => {
+  //     setUser(user)
+  //     setToken(token)
+  //   }} />
+  //   or
+  //   <SignupView />
+  //   </>
+  //   );
+  // }
 
-        // if (!user) {
-        //   return (
-        //     <>
-        //   <LoginView 
-        //   onLoggedIn={(user,token) => {
-        //     setUser(user)
-        //     setToken(token)
-        //   }} />
-        //   or 
-        //   <SignupView />
-        //   </>
-        //   ); 
-    // }
+  if (selectedMovie) {
+    return (
+      <MovieView
+        movie={selectedMovie}
+        onBackClick={() => setSelectedMovie(null)}
+      />
+    );
+  }
 
-              if (selectedMovie) {
-            return ( <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
-            );
-          }
+  if (movies.length === 0) {
+    return <div>The list is empty!</div>;
+  }
 
-          if (movies.length === 0) {
-              return <div>The list is empty!</div>;
-          }
-
-          return (
-              <div>
-                
-                {movies.map((movie) => 
-                    (<MovieCard 
-                      key={movie.id}
-                      movie = {movie} 
-                      onMovieClick={(newSelectedMovie) => {
-                        setSelectedMovie(newSelectedMovie);
-                    }}
-                  />
-                ))}
-                  {/* // <button onClick={() => { setUser(null); setToken(null); }}>Logout</button> */}
-               </div>
-          );
-}
+  return (
+    <div>
+      {movies.map((movie) => (
+        <MovieCard
+          key={movie.id}
+          movie={movie}
+          onMovieClick={(newSelectedMovie) => {
+            setSelectedMovie(newSelectedMovie);
+          }}
+        />
+      ))}
+      {/* // <button onClick={() => { setUser(null); setToken(null); }}>Logout</button> */}
+    </div>
+  );
+};
