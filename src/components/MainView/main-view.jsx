@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
-// import { LoginView } from "../login-view/login-view";
-// import { SignupView } from "../signup-view/signup-view";
+import { LoginView } from "../login-view/login-view";
+import { SignupView } from "../signup-view/signup-view";
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -13,9 +13,9 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    // if (!token) {
-    //   return;
-    // }
+    if (!token) {
+      return;
+    }
 
     fetch("https://movie-api-1000.herokuapp.com/movies", {
       headers: { Authorization: `Bearer ${token}` },
@@ -35,21 +35,21 @@ export const MainView = () => {
         });
         setMovies(moviesFromApi);
       });
-  }, []); // add token
+  }, [token]); 
 
-  // if (!user) {
-  //   return (
-  //     <>
-  //   <LoginView
-  //   onLoggedIn={(user,token) => {
-  //     setUser(user)
-  //     setToken(token)
-  //   }} />
-  //   or
-  //   <SignupView />
-  //   </>
-  //   );
-  // }
+  if (!user) {
+    return (
+      <>
+    <LoginView
+    onLoggedIn={(user,token) => {
+      setUser(user)
+      setToken(token)
+    }} />
+    or
+    <SignupView />
+    </>
+    );
+  }
 
   if (selectedMovie) {
     return (
@@ -75,7 +75,7 @@ export const MainView = () => {
           }}
         />
       ))}
-      {/* // <button onClick={() => { setUser(null); setToken(null); }}>Logout</button> */}
+     <button onClick={() => { setUser(null); setToken(null); }}>Logout</button>
     </div>
   );
 };

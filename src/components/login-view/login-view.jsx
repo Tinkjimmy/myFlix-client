@@ -9,14 +9,14 @@ export const LoginView = ({ onLoggedIn }) => {
     event.preventDefault();
 
     const data = {
-      Username: Username,
-      Password: Password
+      Username: username, // access
+      Password: password // secret
     };
 
     fetch("https://movie-api-1000.herokuapp.com/login", {
       method: "POST",
       headers: {
-        "Contente-Type" : "application/json"
+        "Content-Type" : "application/json"
       },
       body: JSON.stringify(data)
     })
@@ -25,6 +25,7 @@ export const LoginView = ({ onLoggedIn }) => {
     .then((data) => {
       console.log("Login response: ", data);
       if (data.user) {
+        
         localStorage.setItem("user", JSON.stringify(data.user));
         localStorage.setItem("token", data.token);
         onLoggedIn(data.user, data.token);

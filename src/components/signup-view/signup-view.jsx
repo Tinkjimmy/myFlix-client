@@ -13,11 +13,11 @@ export const SignupView = ({ onLoggedIn }) => {
       Username: username,
       Password: password,
       Email: email,
-      Birthday: birthday
+      Birth: birth
     };
 
     // request to API-USER-REGISTRATION
-    fetch("https://dashboard.heroku.com/apps/movie-api-1000/users", {
+    fetch("https://movie-api-1000.herokuapp.com/users", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
