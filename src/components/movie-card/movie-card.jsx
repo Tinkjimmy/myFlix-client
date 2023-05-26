@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 import {Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -20,11 +21,7 @@ export const MovieCard = ({ movie}) => {
 
   MovieCard.propTypes ={
     movies: PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      description: PropTypes.string,
-      image: PropTypes.string.isRequired,
-      director: PropTypes.string,
-      genre: PropTypes.string
+      title: PropTypes.string.isRequired
     }).isRequired,
     // onmovieClick: PropTypes.func.isRequiredKC
   };
