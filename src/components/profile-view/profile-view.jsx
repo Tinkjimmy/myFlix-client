@@ -186,7 +186,7 @@ export const ProfileView = ({
 
   const getUser = () => {
     // NOTE: user.Username is grabbed from the user prop that main-view send to this component
-    fetch("https://movie-api-1000.herokuapp.com/users/${user.Username}", {
+    fetch(`https://movie-api-1000.herokuapp.com/users/${user.Username}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((response) => response.json())
@@ -214,7 +214,7 @@ export const ProfileView = ({
     };
 
     // FIX: Update using template literal syntax like I have used for the getUser function
-    fetch("https://movie-api-1000.herokuapp.com/users/:Username", {
+    fetch(`https://movie-api-1000.herokuapp.com/users/${user.Username}`, {
       method: "PUT",
       body: JSON.stringify(data),
       headers: {
@@ -244,7 +244,7 @@ export const ProfileView = ({
 
   const deleteAccount = () => {
     // FIX: Update using template literal syntax
-    fetch("https://movie-api-1000.herokuapp.com/users/:Username", {
+    fetch(`https://movie-api-1000.herokuapp.com/users/${user.Username}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     })
@@ -284,6 +284,7 @@ export const ProfileView = ({
           Delete user account
         </Button>
       </Col>
+
       <Col md={6}>
         <Card className="mt-2 mb-3">
           <Card.Body>
