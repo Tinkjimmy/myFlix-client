@@ -118,31 +118,6 @@ export const ProfileView = ({
       });
   };
 
-  const getFavorites = () => {
-    fetch(
-      `https://movie-api-1000.herokuapp.com/users/${encodeURIComponent(
-        user.Username
-      )}/movies/${encodeURIComponent(movie.id)}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        alert(`${movie.title} was deleted from your favourites!`);
-        localStorage.setItem("user", JSON.stringify(data));
-        setFavouriteList(data.Favourites);
-      })
-      .catch((error) => {
-        // Handle error
-        console.error("Error favoriting movie:", error);
-      });
-  };
-
   return (
     <>
       <Col md={6}>
