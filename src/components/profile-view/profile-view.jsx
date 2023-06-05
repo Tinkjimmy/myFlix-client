@@ -14,11 +14,7 @@ export const ProfileView = ({
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
-  const [favourites, setFavourites] = useState("");
-
-  let favoriteMovies = movies.filter((movie) =>
-    user.Favourites.includes(movie._id)
-  ); //possible error
+  const [favourites, setFavourites] = useState([]);
 
   const getUser = () => {
     // NOTE: user.Username is grabbed from the user prop that main-view send to this component
@@ -45,6 +41,8 @@ export const ProfileView = ({
     getUser();
   }, []);
 
+  let favMovies = movies.filter((movie) => favourites.includes(movie._id));
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -54,7 +52,7 @@ export const ProfileView = ({
       Email: email,
       Birth: birthdate,
     };
-    // FIX: Update using template literal syntax like I have used for the getUser function
+
     fetch(
       `https://movie-api-1000.herokuapp.com/users/${
         JSON.parse(localStorage.getItem("user")).Username
@@ -92,7 +90,6 @@ export const ProfileView = ({
   };
 
   const deleteAccount = () => {
-    // FIX: Update using template literal syntax
     fetch(
       `https://movie-api-1000.herokuapp.com/users/${
         JSON.parse(localStorage.getItem("user")).Username
@@ -195,15 +192,32 @@ export const ProfileView = ({
           </Card.Body>
         </Card>
       </Col>
+
       <Card>
         <Col md={12}>
           <h3 className="mt-3 mb-3 ">Your favorite movies:</h3>
         </Col>
-        {favoriteMovies.map((movie) => (
-          <Col className="mb-4" key={movie.id} xl={2} lg={3} md={4} xs={6}>
-            <MovieCard movie={movie} />
-          </Col>
-        ))}
+        <ul>
+          {/* i tried to map favMovies, which should contain all the movies that
+          matched the ids in "favourites" state */}
+          {/* {favMovies.map((movie) => (
+            <li>{movie.title}</li>
+          ))} */}
+
+          {/* the only one that kind of works, but it only shows the ids of
+          user.Favourites */}
+          {favourites.map((id) => (
+            <li>{id}</li>
+          ))}
+
+          {/* i tried to compare the ids in the favourites state with each id of
+          movies an create an "li" element if they matched */}
+          {/* {favourites.map((id) =>
+            movies.map((movie) => {
+              movie._Id === id && <li>{movie.Title}</li>;
+            })
+          )} */}
+        </ul>
       </Card>
     </>
   );
