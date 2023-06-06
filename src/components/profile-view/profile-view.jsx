@@ -41,7 +41,8 @@ export const ProfileView = ({
     getUser();
   }, []);
 
-  let favMovies = movies.filter((movie) => favourites.includes(movie._id));
+  // let favMovies = movies.filter((movie) =>movie.id ===);
+  let favMovies = movies.filter((movie) => favourites.includes(movie.id));
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -197,27 +198,17 @@ export const ProfileView = ({
         <Col md={12}>
           <h3 className="mt-3 mb-3 ">Your favorite movies:</h3>
         </Col>
-        <ul>
-          {/* i tried to map favMovies, which should contain all the movies that
-          matched the ids in "favourites" state */}
-          {/* {favMovies.map((movie) => (
+
+        {/* this one return movie.title */}
+        {/* {favMovies.map((movie) => (
             <li>{movie.title}</li>
           ))} */}
 
-          {/* the only one that kind of works, but it only shows the ids of
-          user.Favourites */}
-          {favourites.map((id) => (
-            <li>{id}</li>
-          ))}
-
-          {/* i tried to compare the ids in the favourites state with each id of
-          movies an create an "li" element if they matched */}
-          {/* {favourites.map((id) =>
-            movies.map((movie) => {
-              movie._Id === id && <li>{movie.Title}</li>;
-            })
-          )} */}
-        </ul>
+        {favMovies.map((movie) => (
+          <Col className="col-4 col-md-4" key={movie.id} md={2}>
+            <MovieCard movie={movie} />
+          </Col>
+        ))}
       </Card>
     </>
   );
