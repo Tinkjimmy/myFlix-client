@@ -47296,12 +47296,12 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
                                 movie: movie
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 209,
+                                lineNumber: 210,
                                 columnNumber: 13
                             }, undefined)
                         }, movie.id, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 208,
+                            lineNumber: 209,
                             columnNumber: 11
                         }, undefined))
                 ]

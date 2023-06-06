@@ -204,6 +204,7 @@ export const ProfileView = ({
             <li>{movie.title}</li>
           ))} */}
 
+        {/* this one  returns MovieCard for each favourite movie in the user's array */}
         {favMovies.map((movie) => (
           <Col className="col-4 col-md-4" key={movie.id} md={2}>
             <MovieCard movie={movie} />
