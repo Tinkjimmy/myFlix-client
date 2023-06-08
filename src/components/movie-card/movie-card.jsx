@@ -74,6 +74,16 @@ export const MovieCard = ({ movie }) => {
         <Button variant="primary" onClick={deleteFavoriteMovie}>
           {favouriteList.includes(movie.id) ? "Unfavourite" : ""}
         </Button>
+        {/* <Button
+          variant="primary"
+          onClick={
+            favouriteList.includes(movie.id)
+              ? deleteFavoriteMovie
+              : favoriteMovie
+          }
+        >
+          {favouriteList.includes(movie.id) ? "Unfavourite" : "Favourite"}
+        </Button> */}
       </Card.Body>
     </Card>
   );
