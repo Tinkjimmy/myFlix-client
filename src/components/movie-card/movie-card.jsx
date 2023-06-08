@@ -65,7 +65,7 @@ export const MovieCard = ({ movie }) => {
       <Card.Body>
         <Card.Title>{movie.title}</Card.Title>
         <Card.Text>{movie.director}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
+        {/* <Link to={`/movies/${encodeURIComponent(movie.id)}`}>
           <Button variant="link">Open</Button>
         </Link>
         <Button variant="primary" onClick={favoriteMovie}>
@@ -73,8 +73,8 @@ export const MovieCard = ({ movie }) => {
         </Button>
         <Button variant="primary" onClick={deleteFavoriteMovie}>
           {favouriteList.includes(movie.id) ? "Unfavourite" : ""}
-        </Button>
-        {/* <Button
+        </Button> */}
+        <Button
           variant="primary"
           onClick={
             favouriteList.includes(movie.id)
@@ -83,7 +83,7 @@ export const MovieCard = ({ movie }) => {
           }
         >
           {favouriteList.includes(movie.id) ? "Unfavourite" : "Favourite"}
-        </Button> */}
+        </Button>
       </Card.Body>
     </Card>
   );
