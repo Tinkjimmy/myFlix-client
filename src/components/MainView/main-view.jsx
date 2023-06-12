@@ -14,6 +14,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [favs, setFavs] = useState([false]);
 
   useEffect(() => {
     if (!token) {
@@ -40,10 +41,25 @@ export const MainView = () => {
       });
   }, [token]);
 
+  //preferiti filtro
+  console.log("film");
+  const favourites = user.Favourites;
+  const films = movies;
+
+  const favMovies = films.filter((film) => favourites.includes(film.id));
+  console.log(favMovies);
+
+  const handleStateChange = () => {
+    favs === true ? setFavs(false) : setFavs(true);
+  };
+
+  //inizio return
   return (
     <BrowserRouter>
       <NavigationBar
         user={user}
+        handleChange={handleStateChange}
+        favs={favs}
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
@@ -137,6 +153,14 @@ export const MainView = () => {
                     <Navigate to="/login" replace />
                   ) : movies.length === 0 ? (
                     <Col>The list is empty!</Col>
+                  ) : favs === true ? (
+                    <>
+                      {favMovies.map((movie) => (
+                        <Col className="mb-4" key={movie.id} md={3}>
+                          <MovieCard movie={movie} />
+                        </Col>
+                      ))}
+                    </>
                   ) : (
                     <>
                       {movies.map((movie) => (

@@ -1,7 +1,7 @@
 import { Navbar, Container, Nav, Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ user, onLoggedOut, handleChange, favs }) => {
   return (
     <Navbar bg="light" expand="lg">
       <Container>
@@ -36,6 +36,9 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
                 <Nav.Link onClick={onLoggedOut}>Logout</Nav.Link>
               </>
             )}
+            <Button onClick={handleChange}>
+              {favs === false ? "Just favorites" : "All movies"}
+            </Button>
           </Nav>
         </Navbar.Collapse>
       </Container>
