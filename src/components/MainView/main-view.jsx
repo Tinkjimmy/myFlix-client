@@ -50,7 +50,7 @@ export const MainView = () => {
 
   //preferiti filtro
   console.log("film");
-  const pref = user.Favourites;
+
   // const films = movies;
 
   const favMovies = movies.filter((movie) => pref.includes(movie.id));
