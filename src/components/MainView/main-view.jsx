@@ -14,7 +14,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
-  const [favs, setFavs] = useState([false]);
+  // const [favs, setFavs] = useState([false]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
@@ -47,25 +47,22 @@ export const MainView = () => {
     movie.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  //preferiti filtro
-  console.log("film");
-
   // const films = movies;
 
-  const favMovies = movies.filter((movie) =>
-    userInfo.Favourites.includes(movie.id)
-  );
+  // const favMovies = movies.filter((movie) =>
+  //   userInfo.Favourites.includes(movie.id)
+  // );
 
-  const handleStateChange = () => {
-    favs === true ? setFavs(false) : setFavs(true);
-  };
+  // const handleStateChange = () => {
+  //   favs === true ? setFavs(false) : setFavs(true);
+  // };
 
   //inizio return
   return (
     <BrowserRouter>
       <NavigationBar
         user={user}
-        handleChange={handleStateChange}
+        // handleChange={handleStateChange}
         favs={favs}
         onLoggedOut={() => {
           setUser(null);
@@ -162,15 +159,16 @@ export const MainView = () => {
                     <Navigate to="/login" replace />
                   ) : movies.length === 0 ? (
                     <Col>The list is empty!</Col>
-                  ) : favs === true ? (
-                    <>
-                      {favMovies.map((movie) => (
-                        <Col className="mb-4" key={movie.id} md={3}>
-                          <MovieCard movie={movie} />
-                        </Col>
-                      ))}
-                    </>
-                  ) : filteredMovies ? (
+                  ) : // : favs === true ? (
+                  //   <>
+                  //     {favMovies.map((movie) => (
+                  //       <Col className="mb-4" key={movie.id} md={3}>
+                  //         <MovieCard movie={movie} />
+                  //       </Col>
+                  //     ))}
+                  //   </>
+                  // )
+                  filteredMovies ? (
                     <>
                       {filteredMovies.map((movie) => (
                         <Col className="mb-4" key={movie.id} md={3}>
