@@ -23,3 +23,12 @@ img(https://myflix-website.netlify.app/) "myFlix live view link")**
 
 
 This is the client side of MyFlix app
+
+## Skills Acquired
+
+- React
+- Virtual DOM interaction 
+- Using react components, props, state, and effects
+- React Bootstrap
+- Redux
+- Client-side routing
