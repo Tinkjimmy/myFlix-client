@@ -49,10 +49,10 @@ export const MainView = () => {
 
   //preferiti filtro
   console.log("film");
-  // const favourites = user.npe;
+
   const films = movies;
 
-  const favMovies = films.filter((film) => favourites.includes(film.id));
+  const favMovies = films.filter((film) => user.Favourites.includes(film.id));
   console.log(favMovies);
 
   const handleStateChange = () => {
