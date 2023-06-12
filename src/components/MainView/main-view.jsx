@@ -15,6 +15,7 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
   const [favs, setFavs] = useState([false]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     if (!token) {
@@ -41,6 +42,11 @@ export const MainView = () => {
       });
   }, [token]);
 
+  //search
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   //preferiti filtro
   console.log("film");
   const favourites = user.Favourites;
@@ -65,6 +71,8 @@ export const MainView = () => {
           setToken(null);
           localStorage.clear();
         }}
+        searchTerm={searchTerm}
+        onSearchTermChange={(value) => setSearchTerm(value)}
       />
       <Container>
         <Row className="justify-content-md-center">
@@ -156,6 +164,14 @@ export const MainView = () => {
                   ) : favs === true ? (
                     <>
                       {favMovies.map((movie) => (
+                        <Col className="mb-4" key={movie.id} md={3}>
+                          <MovieCard movie={movie} />
+                        </Col>
+                      ))}
+                    </>
+                  ) : filteredMovies ? (
+                    <>
+                      {filteredMovies.map((movie) => (
                         <Col className="mb-4" key={movie.id} md={3}>
                           <MovieCard movie={movie} />
                         </Col>
