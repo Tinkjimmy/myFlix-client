@@ -63,7 +63,7 @@ export const MainView = () => {
       <NavigationBar
         user={user}
         // handleChange={handleStateChange}
-        favs={favs}
+        // favs={favs}
         onLoggedOut={() => {
           setUser(null);
           setToken(null);
