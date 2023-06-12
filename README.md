@@ -7,7 +7,7 @@ it's a single-page applcation containing multiple interface views.
 Movies information can be accessed by users favourite movies can be added to a personal "favorite movies" list.
 <br>
 <br>
-**[Click here for the LIVE VIEW of myFlix](https://myflixpkm.netlify.app/ "myFlix live view link")**
+**[Click here for the LIVE VIEW of myFlix](https://myflix-website.netlify.app/) "myFlix live view link")**
 <br>
 <h1>Essential Views & Features</h1>
 <h2>Main view</h2>
