@@ -16,6 +16,7 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [favs, setFavs] = useState([false]);
   const [searchTerm, setSearchTerm] = useState("");
+  const pref = user.Favourites;
 
   useEffect(() => {
     if (!token) {
