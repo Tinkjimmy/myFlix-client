@@ -16,7 +16,6 @@ export const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [favs, setFavs] = useState([false]);
   const [searchTerm, setSearchTerm] = useState("");
-  const pref = user.Favourites;
 
   useEffect(() => {
     if (!token) {
@@ -53,7 +52,9 @@ export const MainView = () => {
 
   // const films = movies;
 
-  const favMovies = movies.filter((movie) => pref.includes(movie.id));
+  const favMovies = movies.filter((movie) =>
+    user.favourites.includes(movie.id)
+  );
 
   const handleStateChange = () => {
     favs === true ? setFavs(false) : setFavs(true);
