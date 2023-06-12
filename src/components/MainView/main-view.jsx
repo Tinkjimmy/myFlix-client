@@ -50,9 +50,11 @@ export const MainView = () => {
   //preferiti filtro
   console.log("film");
 
-  const films = movies;
+  // const films = movies;
 
-  const favMovies = films.filter((film) => user.Favourites.includes(film.id));
+  const favMovies = movies.filter((movie) =>
+    user.Favourites.includes(movie.id)
+  );
   console.log(favMovies);
 
   const handleStateChange = () => {
