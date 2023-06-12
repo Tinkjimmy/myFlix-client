@@ -53,7 +53,7 @@ export const MainView = () => {
   // const films = movies;
 
   const favMovies = movies.filter((movie) =>
-    user.favourites.includes(movie.id)
+    userInfo.Favourites.includes(movie.id)
   );
 
   const handleStateChange = () => {
