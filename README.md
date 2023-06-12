@@ -32,3 +32,18 @@ This is the client side of MyFlix app
 - React Bootstrap
 - Redux
 - Client-side routing
+
+<h1>Languages, Libraries, Frameworks, etc.</h1>
+● HTML <br>
+● SCSS <br>
+● Javascript/JSX <br>
+● MERN Stack (MongoDB, Express, React, Node.js) - Server and Client side <br>
+● Bootstrap & React Bootstrap <br>
+  
+<h1>Technical Requirements</h1>
+● Uses parcel as a build tool<br>
+● Hosted on Netlify<br>
+● API is hosted on Heroku<br>  
+● Written using the React library in ES2015+ <br>
+● Uses Bootstrap as a UI library for styling and responsiveness<br>
+
