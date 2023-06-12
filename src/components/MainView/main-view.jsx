@@ -50,7 +50,7 @@ export const MainView = () => {
   // const films = movies;
 
   // const favMovies = movies.filter((movie) =>
-  //   userInfo.Favourites.includes(movie.id)
+  //   user.Favourites.includes(movie.id)
   // );
 
   // const handleStateChange = () => {
