@@ -35,9 +35,9 @@ export const NavigationBar = ({
                 </Nav.Link>
               </>
             )}
-            {/* <Button onClick={handleChange}>
+            <Button onClick={handleChange}>
               {favs === false ? "Just favorites" : "All movies"}
-            </Button> */}
+            </Button>
 
             {user && (
               <>
